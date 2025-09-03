@@ -24,6 +24,15 @@ namespace Inventory.Infrasturcture.Common.DataContext
         public DbSet<OrderItem> orderItems { get; set; }
 
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Product>()
+                .Property<uint>("xmin") // PostgreSQL system column
+                .IsRowVersion()
+                .IsConcurrencyToken();
+        }
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{

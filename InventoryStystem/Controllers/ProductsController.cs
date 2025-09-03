@@ -17,7 +17,7 @@ namespace Inventory.Api.Controllers
         {
             _sender = sender;
         }
-        [HttpPost("Products")]
+        [HttpPost]
 
         public async Task<IActionResult> AddProduct([FromBody] AddProductDto request)
         {
@@ -26,7 +26,7 @@ namespace Inventory.Api.Controllers
             return StatusCode(commandResponse.ResponseCode, commandResponse);
         }
 
-        [HttpGet("Products")]
+        [HttpGet]
 
         public async Task<IActionResult> GetAllProducts()
         {

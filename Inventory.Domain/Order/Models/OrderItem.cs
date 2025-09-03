@@ -8,13 +8,11 @@ namespace Inventory.Domain.Order.Models
 {
     public class OrderItem
     {
-        public int Id { get; set; }
+        public string Id { get; set; } = Guid.NewGuid().ToString();
 
-        public int OrderId { get; set; }
+        public string OrderId { get; set; }
         public Order Order { get; set; }
-
-        public int ProductId { get; set; }
-
+        public string ProductId { get; set; }   
         public int Quantity { get; set; }
 
         public decimal UnitPrice { get; set; } 

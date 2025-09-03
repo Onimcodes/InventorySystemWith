@@ -5,36 +5,38 @@
 namespace Inventory.Infrasturcture.Migrations
 {
     /// <inheritdoc />
-    public partial class addedavailablestock : Migration
+    public partial class productrowversionupdate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "StockQuantity",
+                name: "RowVersion",
                 table: "Products");
 
-            migrationBuilder.AddColumn<int>(
-                name: "AvailableStock",
+            migrationBuilder.AddColumn<uint>(
+                name: "xmin",
                 table: "Products",
-                type: "integer",
+                type: "xid",
+                rowVersion: true,
                 nullable: false,
-                defaultValue: 0);
+                defaultValue: 0u);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "AvailableStock",
+                name: "xmin",
                 table: "Products");
 
-            migrationBuilder.AddColumn<string>(
-                name: "StockQuantity",
+            migrationBuilder.AddColumn<byte[]>(
+                name: "RowVersion",
                 table: "Products",
-                type: "text",
+                type: "bytea",
+                rowVersion: true,
                 nullable: false,
-                defaultValue: "");
+                defaultValue: new byte[0]);
         }
     }
 }

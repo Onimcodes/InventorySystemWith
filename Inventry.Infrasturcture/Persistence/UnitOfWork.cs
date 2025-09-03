@@ -27,6 +27,22 @@ namespace Inventory.Infrasturcture.Persistence
 
         }
 
+
+        public async Task<int> CompleteAsync(CancellationToken cancellationToken = default)
+        {
+            return await _context.SaveChangesAsync(cancellationToken);
+        }
+
+        public async Task ReloadEntityAsync<TEntity>(TEntity entity) where TEntity : class
+        {
+            var entry = _context.Entry(entity);
+            if (entry != null)
+            {
+                await entry.ReloadAsync();
+            }
+        }
+
+
         public void Dispose()
         {
            _context.Dispose();  

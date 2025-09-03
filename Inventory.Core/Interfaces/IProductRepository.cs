@@ -9,5 +9,6 @@ namespace Inventory.Core.Interfaces
 {
     public interface IProductRepository : IGenericRepository<Product>
     {
+
     }
 }
